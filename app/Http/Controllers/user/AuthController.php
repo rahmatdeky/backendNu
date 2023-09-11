@@ -31,7 +31,15 @@ class AuthController extends Controller
     public function me () 
     {
         $data = auth()->user();
-        return $data;
+        $otor = DB::table('akses')
+        ->select('akses')
+        ->where('email', $data->email)
+        ->get();
+        return response()->json([
+            'name' => $data->name,
+            'email' => $data->email,
+            'otoritas' => $otor
+        ]);
     }
 
     public function logout (Request $request) 
