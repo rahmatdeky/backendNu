@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use Hash;
+use App\Models\Akses;
+use App\Models\Users;
 
 class AuthController extends Controller
 {
@@ -31,11 +33,11 @@ class AuthController extends Controller
     public function me () 
     {
         $data = auth()->user();
-        $otor = DB::table('akses')
-        ->select('akses')
-        ->where('email', $data->email)
+        $otor = Akses::select('akses')
+        ->where('id_user', $data->id)
         ->get();
         return response()->json([
+            'id' => $data->id,
             'name' => $data->name,
             'email' => $data->email,
             'otoritas' => $otor
@@ -49,19 +51,17 @@ class AuthController extends Controller
 
     public function registrasi (Request $request)
     {
-        $registraasi = DB::table(DB::raw('users'))
-        ->insert([
+        $registraasi = Users::insert([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
     }
 
-    public function gantiPw (Request $request)
+    public function gantiPwbySelf (Request $request)
     {
-        $cekUser = DB::table(DB::raw('users'))
-        ->where('name', $request->user)->first();
-        if(Hash::check($request->password, $cekUser->password)){
+        $cekUser = Users::where('id', $request->id)->first();
+        if(Hash::check($request->currentPass, $cekUser->password)){
             $check = 1;
         } else {
             $check = 0;
@@ -72,10 +72,9 @@ class AuthController extends Controller
                 'message' => 'Password Salah'
             ]);
         } else {
-            $user = DB::table(DB::raw('users'))
-            ->where('name', $request->user)
+            $user = Users::where('id', $request->id)
             ->update([
-                'password' => Hash::make($request->passwordBaru)
+                'password' => Hash::make($request->newPass)
             ]);
             return response()->json([
                 'status' => 'success',
@@ -88,14 +87,21 @@ class AuthController extends Controller
     {
         $user = auth()->user();
         // return $user;
-        $otor = DB::table('akses')
-        ->select('akses')
-        ->where('email', $user->email)
+        $otor = Akses::select('akses')
+        ->where('id', $user->id)
         ->get();
 
         return response()->json([
             'email' => $user->email,
             'akses' => $otor->pluck('akses')
+        ]);
+    }
+
+    public function updatePwbyAdmin(Request $request)
+    {
+        $update = Users::where('id', $request->id)
+        ->update([
+            'password' => Hash::make($request->baru)
         ]);
     }
 }
