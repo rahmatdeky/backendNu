@@ -35,5 +35,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/user/updatePwbyAdmin', [AuthController::class, 'updatePwbyAdmin']);
     Route::post('user/addAkses', [UserController::class, 'addAkses']);
     Route::post('user/adduser', [UserController::class, 'addUser']);
+    Route::post('user/akses/delete', [UserController::class, 'deleteAkses']);
 });
 Route::post('/registrasi', [AuthController::class, 'registrasi']);

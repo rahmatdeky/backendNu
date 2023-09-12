@@ -91,4 +91,22 @@ class UserController extends Controller
             'message' => 'data berhasi disimpan'
         ]);
     }
+
+    public function deleteAkses(Request $request)
+    {
+        $delete = Akses::where('id', $request->id_menu)
+        ->delete();
+
+        if ($delete) {
+            return response()->json([
+                'status' => 'sukses',
+                'message' => 'data berhasil dihapus'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'gagal',
+                'message' => 'data gagal dihapus'
+            ]);
+        }
+    }
 }
