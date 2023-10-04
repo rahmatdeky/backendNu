@@ -109,4 +109,22 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function deleteUser(Request $request)
+    {
+        $deleteUser = Users::where('id', $request->id_user)
+        ->delete();
+
+        if ($deleteUser) {
+            return response()->json([
+                'status' => 'sukses',
+                'message' => 'data berhasil dihapus'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'gagal',
+                'message' => 'data gagal dihapus'
+            ]);
+        }
+    }
 }

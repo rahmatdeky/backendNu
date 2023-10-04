@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\user\AuthController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\berita\BeritaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,14 +28,26 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/siswa', [SiswaController::class, 'index']);
     Route::post('/gantiPw', [AuthController::class, 'gantiPwbySelf']);
     Route::get('/getAccess', [AuthController::class, 'getAccess']);
+
     // User Manajer
     Route::post('/getUser', [UserController::class, 'getUser']);
     Route::get('/getUser/detail/{email}', [UserController::class, 'getUserDetail']);
     Route::get('/getUser/listAkses', [UserController::class, 'getListAkses']);
     Route::put('/user/updateData', [UserController::class, 'updateUser']);
     Route::put('/user/updatePwbyAdmin', [AuthController::class, 'updatePwbyAdmin']);
+    Route::post('user/delete', [UserController::class, 'deleteUser']);
     Route::post('user/addAkses', [UserController::class, 'addAkses']);
     Route::post('user/adduser', [UserController::class, 'addUser']);
     Route::post('user/akses/delete', [UserController::class, 'deleteAkses']);
+
+    // Manajemen Berita
+    Route::post('/berita/tambah', [BeritaController::class, 'tambahBerita']);
+    Route::post('/berita/browse', [BeritaController::class, 'browseBerita']);
+    Route::post('/berita/edit', [BeritaController::class, 'editBerita']);
+    Route::post('/berita/delete', [BeritaController::class, 'hapusBerita']);
 });
 Route::post('/registrasi', [AuthController::class, 'registrasi']);
+
+// Guest Berita
+Route::get('/berita/guest/browse', [BeritaController::class, 'guestBrowseBerita']);
+Route::get('/berita/guest/detail/{id}', [BeritaController::class, 'guestDetailBerita']);
