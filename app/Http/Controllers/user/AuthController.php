@@ -33,14 +33,15 @@ class AuthController extends Controller
     public function me () 
     {
         $data = auth()->user();
-        $otor = Akses::select('akses')
-        ->where('id_user', $data->id)
-        ->get();
+        // $otor = Akses::select('akses')
+        // ->where('id_user', $data->id)
+        // ->get();
         return response()->json([
             'id' => $data->id,
             'name' => $data->name,
             'email' => $data->email,
-            'otoritas' => $otor
+            // 'otoritas' => $otor
+            'otoritas' => $data->akses
         ]);
     }
 

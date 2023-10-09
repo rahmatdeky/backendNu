@@ -28,15 +28,16 @@ class UserController extends Controller
     {
         $user = Users::where('id', $id)
         ->first();
-        $akses = Akses::where('id_user', $id)
-        ->get();
+        // $akses = Akses::where('id_user', $id)
+        // ->get();
 
         return response()->json([
             'id' =>$user->id,
             'name' => $user->name,
             'email' => $user->email,
             'password' => $user->password,
-            'akses' => $akses
+            // 'akses' => $akses
+            'akses' => $user->akses
         ]);
     }
 
@@ -54,7 +55,8 @@ class UserController extends Controller
         $update = Users::where('id', $request->id)
         ->update([
             'name' => $request->nama,
-            'email' => $request->email
+            'email' => $request->email,
+            'akses' => $request->role
         ]);
 
         if($update) {

@@ -131,7 +131,7 @@ class BeritaController extends Controller
         } else {
             return response()->json([
                 'title' => 'Gagal',
-                'text' => 'Data Gagal Dirubah',
+                'text' => 'Data Gagal Dihapus',
                 'icon' => 'error'
             ]);
         }
