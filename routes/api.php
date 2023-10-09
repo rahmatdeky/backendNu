@@ -6,6 +6,7 @@ use App\Http\Controllers\user\AuthController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\berita\BeritaController;
+use App\Http\Controllers\pengurus\pengurusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/berita/browse', [BeritaController::class, 'browseBerita']);
     Route::post('/berita/edit', [BeritaController::class, 'editBerita']);
     Route::post('/berita/delete', [BeritaController::class, 'hapusBerita']);
+
+    // Pengurus
+    Route::post('/pengurus/tambah', [pengurusController::class, 'tambahPengurus']);
+    Route::post('/pengurus/browse', [pengurusController::class, 'browsePengurus']);
+    Route::get('/pengurus/detail/{NIK}', [pengurusController::class, 'getDetailPengurus']);
+    Route::post('/pengurus/detail/edit', [pengurusController::class, 'editDetailPengurus']);
+    Route::post('/pengurus/delete', [pengurusController::class, 'deletePengurus']);
 });
 Route::post('/registrasi', [AuthController::class, 'registrasi']);
 
