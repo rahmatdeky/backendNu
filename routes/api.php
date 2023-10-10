@@ -7,6 +7,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\berita\BeritaController;
 use App\Http\Controllers\pengurus\pengurusController;
+use App\Http\Controllers\lembaga\lembagaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/pengurus/detail/{NIK}', [pengurusController::class, 'getDetailPengurus']);
     Route::post('/pengurus/detail/edit', [pengurusController::class, 'editDetailPengurus']);
     Route::post('/pengurus/delete', [pengurusController::class, 'deletePengurus']);
+
+    // Lembaga
+    Route::post('/lembaga/tambah', [lembagaController::class, 'tambahLembaga']);
+    Route::post('/lembaga/browse', [lembagaController::class, 'browseLembaga']);
+    Route::get('/lembaga/detail/{id}', [lembagaController::class, 'detailLembaga']);
+    Route::post('/lembaga/detail/edit', [lembagaController::class, 'editLembaga']);
+    Route::post('/lembaga/delete', [lembagaController::class, 'deleteLembaga']);
 });
 Route::post('/registrasi', [AuthController::class, 'registrasi']);
 
