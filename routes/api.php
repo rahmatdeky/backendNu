@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\berita\BeritaController;
 use App\Http\Controllers\pengurus\pengurusController;
 use App\Http\Controllers\lembaga\lembagaController;
+use App\Http\Controllers\LandingPage\LandingPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,9 +62,23 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/lembaga/detail/{id}', [lembagaController::class, 'detailLembaga']);
     Route::post('/lembaga/detail/edit', [lembagaController::class, 'editLembaga']);
     Route::post('/lembaga/delete', [lembagaController::class, 'deleteLembaga']);
+
+    // Setting Carousel
+    Route::get('/page/landing/carousel/image', [LandingPageController::class, 'getCarouselImg']);
+    Route::post('/page/landing/carousel/image/add', [LandingPageController::class, 'addCarouselImg']);
+    Route::post('/page/landing/carousel/image/delete', [LandingPageController::class, 'deleteCarouselImg']);
+
+    // Setting Highlight Berita
+    Route::put('/page/landing/highlihgt/change', [LandingPageController::class, 'changeHighlight']);
 });
 Route::post('/registrasi', [AuthController::class, 'registrasi']);
 
 // Guest Berita
 Route::get('/berita/guest/browse', [BeritaController::class, 'guestBrowseBerita']);
 Route::get('/berita/guest/detail/{id}', [BeritaController::class, 'guestDetailBerita']);
+
+// Get Carousel
+Route::get('/page/landing/carousel/image/used', [LandingPageController::class, 'getCarouselImgUsed']);
+
+// Get Highlight Berita
+Route::get('/page/landing/highlihgt/get', [LandingPageController::class, 'getHighlight']);

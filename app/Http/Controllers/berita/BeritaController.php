@@ -140,7 +140,7 @@ class BeritaController extends Controller
     public function guestBrowseBerita()
     {
         $guestBerita = ModelBerita::orderBy('tanggal_berita', 'desc')
-        ->paginate(2);
+        ->paginate(5);
 
         return response()->json($guestBerita);
     }
