@@ -19,7 +19,11 @@ class lembagaController extends Controller
             'jenis_kerjasama' => $request->kerjaSama,
             'no_kontak' => $request->nomorKontak,
             'email' => $request->email,
-            'website' => $request->website
+            'website' => $request->website,
+            'RT' => $request->RT,
+            'RW' => $request->RW,
+            'kecamatan' => $request->kecamatan,
+            'kelurahan' => $request->kelurahan
         ]);
 
         if ($tambah) {
@@ -68,7 +72,11 @@ class lembagaController extends Controller
             'jenis_kerjasama' => $request->kerjaSama,
             'no_kontak' => $request->nomorKontak,
             'email' => $request->email,
-            'website' => $request->website
+            'website' => $request->website,
+            'RT' => $request->RT,
+            'RW' => $request->RW,
+            'kecamatan' => $request->kecamatan,
+            'kelurahan' => $request->kelurahan
         ]);
 
         if ($edit) {

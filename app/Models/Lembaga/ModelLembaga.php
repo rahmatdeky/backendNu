@@ -11,5 +11,5 @@ class ModelLembaga extends Model
     protected $primaryKey = 'id_lembaga';
     public $incrementing = false;
     public $timestamps = false;
-    protected $fillable = ['id_lembaga', 'nama_lembaga', 'jenjang', 'jenis_lembaga', 'alamat', 'nama_pimpinan', 'jenis_kerjasama', 'no_kontak', 'email', 'website'];
+    protected $fillable = ['id_lembaga', 'nama_lembaga', 'jenjang', 'jenis_lembaga', 'alamat', 'nama_pimpinan', 'jenis_kerjasama', 'no_kontak', 'email', 'website','RT', 'RW', 'kecamatan', 'kelurahan'];
 }
