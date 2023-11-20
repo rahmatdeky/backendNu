@@ -51,25 +51,26 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Pengurus
     Route::post('/pengurus/tambah', [pengurusController::class, 'tambahPengurus']);
-    Route::post('/pengurus/browse', [pengurusController::class, 'browsePengurus']);
     Route::get('/pengurus/detail/{NIK}', [pengurusController::class, 'getDetailPengurus']);
     Route::post('/pengurus/detail/edit', [pengurusController::class, 'editDetailPengurus']);
     Route::post('/pengurus/delete', [pengurusController::class, 'deletePengurus']);
-
+    
     // Lembaga
     Route::post('/lembaga/tambah', [lembagaController::class, 'tambahLembaga']);
-    Route::post('/lembaga/browse', [lembagaController::class, 'browseLembaga']);
     Route::get('/lembaga/detail/{id}', [lembagaController::class, 'detailLembaga']);
     Route::post('/lembaga/detail/edit', [lembagaController::class, 'editLembaga']);
     Route::post('/lembaga/delete', [lembagaController::class, 'deleteLembaga']);
-
+    
     // Setting Carousel
     Route::get('/page/landing/carousel/image', [LandingPageController::class, 'getCarouselImg']);
     Route::post('/page/landing/carousel/image/add', [LandingPageController::class, 'addCarouselImg']);
     Route::post('/page/landing/carousel/image/delete', [LandingPageController::class, 'deleteCarouselImg']);
-
+    
     // Setting Highlight Berita
     Route::put('/page/landing/highlihgt/change', [LandingPageController::class, 'changeHighlight']);
+
+    // Referensi
+    Route::get('/refKecamatan', [pengurusController::class, 'getRefKecamatan']);
 });
 Route::post('/registrasi', [AuthController::class, 'registrasi']);
 
@@ -82,3 +83,9 @@ Route::get('/page/landing/carousel/image/used', [LandingPageController::class, '
 
 // Get Highlight Berita
 Route::get('/page/landing/highlihgt/get', [LandingPageController::class, 'getHighlight']);
+
+// Get Pengurus
+Route::post('/pengurus/browse', [pengurusController::class, 'browsePengurus']);
+
+// Get Lembaga
+Route::post('/lembaga/browse', [lembagaController::class, 'browseLembaga']);

@@ -11,5 +11,5 @@ class modelPengurus extends Model
     protected $primaryKey = 'id_berita';
     public $incrementing = false;
     public $timestamps = false;
-    protected $fillable = ['NIK', 'nama_pengurus', 'alamat_pengurus', 'organisasi', 'jabatan', 'no_hp', 'email'];
+    protected $fillable = ['NIK', 'nama_pengurus', 'alamat_pengurus', 'organisasi', 'jabatan', 'no_hp', 'email','RW', 'RT', 'kecamatan', 'kelurahan'];
 }

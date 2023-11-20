@@ -5,6 +5,8 @@ namespace App\Http\Controllers\pengurus;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pengurus\modelPengurus;
+use App\Models\ModelKecamatan;
+use App\Models\ModelKelurahan;
 
 class pengurusController extends Controller
 {
@@ -17,7 +19,11 @@ class pengurusController extends Controller
             'organisasi' => $request->organisasi,
             'jabatan' => $request->jabatan,
             'no_hp' => $request->nomorHp,
-            'email' => $request->email
+            'email' => $request->email,
+            'RW' => $request->RW,
+            'RT' => $request->RT,
+            'kecamatan' => $request->kecamatan,
+            'kelurahan' => $request->kelurahan
         ]);
 
         if ($tambah) {
@@ -65,7 +71,11 @@ class pengurusController extends Controller
             'organisasi' => $request->organisasi,
             'jabatan' => $request->jabatan,
             'no_hp' => $request->nomorHp,
-            'email' => $request->email
+            'email' => $request->email,
+            'RT' => $request->RT,
+            'RW' => $request->RW,
+            'kecamatan' => $request->kecamatan,
+            'kelurahan' => $request->kelurahan
         ]);
 
         if ($edit) {
@@ -101,5 +111,12 @@ class pengurusController extends Controller
                 'icon' => 'error'
             ]);
         }
+    }
+
+    public function getRefKecamatan()
+    {
+        $kecamatan = ModelKecamatan::with('kelurahan')->get();
+
+        return response()->json($kecamatan);
     }
 }
