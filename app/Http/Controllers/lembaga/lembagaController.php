@@ -113,4 +113,51 @@ class lembagaController extends Controller
             ]);
         }
     }
+
+    public function getLembaga()
+    {
+        $lembaga = ModelLembaga::select('id_lembaga', 'kecamatan')->get();
+
+        // $kecamatanCounts = $lembaga->groupBy('kecamatan')->map->count();
+        $belakangPadang = $lembaga->where('kecamatan', 'Belakang Padang')->count();
+        $bulang = $lembaga->where('kecamatan', 'Bulang')->count();
+        $sungaiBeduk = $lembaga->where('kecamatan', 'Sungai Beduk')->count();
+        $sagulung = $lembaga->where('kecamatan', 'Sagulung')->count();
+        $nongsa = $lembaga->where('kecamatan', 'Nongsa')->count();
+        $batamKota = $lembaga->where('kecamatan', 'Batam Kota')->count();
+        $sekupang = $lembaga->where('kecamatan', 'Sekupang')->count();
+        $batuAji = $lembaga->where('kecamatan', 'Batu Aji')->count();
+        $lubukBaja = $lembaga->where('kecamatan', 'Lubuk Baja')->count();
+        $batuAmpar = $lembaga->where('kecamatan', 'Batu Ampar')->count();
+        $bengkong = $lembaga->where('kecamatan', 'Bengkong')->count();
+        $galang = $lembaga->where('kecamatan', 'Galang')->count();
+
+        return response()->json([
+            'jumlah' => [$belakangPadang,
+            $bulang,
+            $sungaiBeduk,
+            $sagulung,
+            $nongsa,
+            $batamKota,
+            $sekupang,
+            $batuAji,
+            $lubukBaja,
+            $batuAmpar,
+            $bengkong,
+            $galang]
+            
+            // $belakangPadang,
+            // $bulang,
+            // $sungaiBeduk,
+            // $sagulung,
+            // $nongsa,
+            // $batamKota,
+            // $sekupang,
+            // $batuAji,
+            // $lubukBaja,
+            // $batuAmpar,
+            // $bengkong,
+            // $galang
+        ]);
+    }
 }

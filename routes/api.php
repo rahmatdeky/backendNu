@@ -86,6 +86,9 @@ Route::get('/page/landing/highlihgt/get', [LandingPageController::class, 'getHig
 
 // Get Pengurus
 Route::post('/pengurus/browse', [pengurusController::class, 'browsePengurus']);
+Route::get('get/pengurus', [pengurusController::class, 'getPengurus']);
+Route::get('get/kecamatan', [pengurusController::class, 'getKecamatan']);
 
 // Get Lembaga
 Route::post('/lembaga/browse', [lembagaController::class, 'browseLembaga']);
+Route::get('get/lembaga', [lembagaController::class, 'getLembaga']);

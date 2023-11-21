@@ -119,4 +119,46 @@ class pengurusController extends Controller
 
         return response()->json($kecamatan);
     }
+
+    public function getPengurus()
+    {
+        $pengurus = modelPengurus::select('NIK', 'kecamatan')->get();
+
+        $belakangPadang = $pengurus->where('kecamatan', 'Belakang Padang')->count();
+        $bulang = $pengurus->where('kecamatan', 'Bulang')->count();
+        $sungaiBeduk = $pengurus->where('kecamatan', 'Sungai Beduk')->count();
+        $sagulung = $pengurus->where('kecamatan', 'Sagulung')->count();
+        $nongsa = $pengurus->where('kecamatan', 'Nongsa')->count();
+        $batamKota = $pengurus->where('kecamatan', 'Batam Kota')->count();
+        $sekupang = $pengurus->where('kecamatan', 'Sekupang')->count();
+        $batuAji = $pengurus->where('kecamatan', 'Batu Aji')->count();
+        $lubukBaja = $pengurus->where('kecamatan', 'Lubuk Baja')->count();
+        $batuAmpar = $pengurus->where('kecamatan', 'Batu Ampar')->count();
+        $bengkong = $pengurus->where('kecamatan', 'Bengkong')->count();
+        $galang = $pengurus->where('kecamatan', 'Galang')->count();
+
+        return response()->json(['jumlah' => [$belakangPadang,
+        $bulang,
+        $sungaiBeduk,
+        $sagulung,
+        $nongsa,
+        $batamKota,
+        $sekupang,
+        $batuAji,
+        $lubukBaja,
+        $batuAmpar,
+        $bengkong,
+        $galang]
+        ]);
+    }
+
+    public function getKecamatan()
+    {
+        $kecamatan = ModelKecamatan::select('nama_kecamatan')
+        ->pluck('nama_kecamatan');
+
+        return response()->json([
+            'kecamatan' => $kecamatan
+        ]);
+    }
 }
