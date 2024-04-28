@@ -8,6 +8,9 @@ use App\Models\Akses;
 use App\Models\Users;
 use App\Models\ListAkses;
 use Hash;
+use File;
+use Illuminate\Support\Facades\Storage;
+
 
 class UserController extends Controller
 {
@@ -37,7 +40,8 @@ class UserController extends Controller
             'email' => $user->email,
             'password' => $user->password,
             // 'akses' => $akses
-            'akses' => $user->akses
+            'role' => $user->role,
+            'url_foto' => $user->url_foto
         ]);
     }
 
@@ -81,17 +85,49 @@ class UserController extends Controller
         ]);
     }
 
+    // public function addUser(Request $request)
+    // {
+    //     $addUser = Users::create([
+    //         'name' => $request->nama,
+    //         'email' => $request->email,
+    //         'password' => Hash::make($request->password)
+    //     ]);
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'message' => 'data berhasi disimpan'
+    //     ]);
+    // }
+
     public function addUser(Request $request)
     {
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = $file->getClientOriginalName();
+            $path = 'public/file/foto/users/' . $fileName;
+            Storage::disk('public')->put($path, file_get_contents($file));
+        }
+
         $addUser = Users::create([
             'name' => $request->nama,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
+            'url_foto' => $path
         ]);
-        return response()->json([
-            'status' => 'success',
-            'message' => 'data berhasi disimpan'
-        ]);
+
+        if ($addUser) {
+            return response()->json([
+                'title' => 'Berhasil',
+                'text' => 'Data Berhasil Disimpan',
+                'icon' => 'success'
+            ]);
+        } else {
+            return response()->json([
+                'title' => 'Gagal',
+                'text' => 'Data Gagal Disimpan',
+                'icon' => 'error'
+            ]);
+        }
     }
 
     public function deleteAkses(Request $request)

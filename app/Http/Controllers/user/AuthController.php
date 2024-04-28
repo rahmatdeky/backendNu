@@ -41,7 +41,7 @@ class AuthController extends Controller
             'name' => $data->name,
             'email' => $data->email,
             // 'otoritas' => $otor
-            'otoritas' => $data->akses
+            'otoritas' => $data->role
         ]);
     }
 
