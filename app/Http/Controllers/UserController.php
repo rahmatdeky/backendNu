@@ -60,18 +60,21 @@ class UserController extends Controller
         ->update([
             'name' => $request->nama,
             'email' => $request->email,
-            'akses' => $request->role
+            // 'akses' => $request->role
+            'role' => $request->role
         ]);
 
         if($update) {
             return response()->json([
-                'status' => 'sukses',
-                'message' => 'data berhasil diubah'
+                'title' => 'Berhasil',
+                'text' => 'Data Berhasil Disimpan',
+                'icon' => 'success'
             ]);
         } else {
             return response()->json([
-                'status' => 'gagal',
-                'message' => 'data gagal diubah'
+                'title' => 'Gagal',
+                'text' => 'Data Gagal Disimpan',
+                'icon' => 'error'
             ]);
         }
     }

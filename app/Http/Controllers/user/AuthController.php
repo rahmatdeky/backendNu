@@ -105,5 +105,19 @@ class AuthController extends Controller
         ->update([
             'password' => Hash::make($request->baru)
         ]);
+
+        if($update) {
+            return response()->json([
+                'title' => 'Berhasil',
+                'text' => 'Data Berhasil Disimpan',
+                'icon' => 'success'
+            ]);
+        } else {
+            return response()->json([
+                'title' => 'Gagal',
+                'text' => 'Data Gagal Disimpan',
+                'icon' => 'error'
+            ]);
+        }
     }
 }
