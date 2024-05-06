@@ -153,18 +153,22 @@ class UserController extends Controller
 
     public function deleteUser(Request $request)
     {
+        $getUrlFileUser = Users::where('id', $request->id_user)->value('url_foto');
+        $deleteFile = Storage::delete('public/' . $getUrlFileUser);
         $deleteUser = Users::where('id', $request->id_user)
         ->delete();
 
-        if ($deleteUser) {
+        if ($deleteFile && $deleteUser) {
             return response()->json([
-                'status' => 'sukses',
-                'message' => 'data berhasil dihapus'
+                'title' => 'Berhasil',
+                'text' => 'Data Berhasil Dihapus',
+                'icon' => 'success'
             ]);
         } else {
             return response()->json([
-                'status' => 'gagal',
-                'message' => 'data gagal dihapus'
+                'title' => 'Gagal',
+                'text' => 'Data Gagal Dihapus',
+                'icon' => 'error'
             ]);
         }
     }
@@ -175,6 +179,7 @@ class UserController extends Controller
             $file = $request->file('file');
             $fileName = $file->getClientOriginalName();
             $path = 'public/file/foto/users/' . $fileName;
+            Storage::delete('public/' . $request->url);
             Storage::disk('public')->put($path, file_get_contents($file));
         }
 
