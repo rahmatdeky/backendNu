@@ -168,4 +168,19 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function gantiGambar(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = $file->getClientOriginalName();
+            $path = 'public/file/foto/users/' . $fileName;
+            Storage::disk('public')->put($path, file_get_contents($file));
+        }
+
+        $update = Users::where('id', $request->id)
+        ->update([
+            'url_foto' => $path
+        ]);
+    }
 }

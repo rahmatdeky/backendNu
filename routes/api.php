@@ -42,6 +42,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('user/addAkses', [UserController::class, 'addAkses']);
     Route::post('user/adduser', [UserController::class, 'addUser']);
     Route::post('user/akses/delete', [UserController::class, 'deleteAkses']);
+    Route::post('/user/gantiGambar', [UserController::class, 'gantiGambar']);
 
     // Manajemen Berita
     Route::post('/berita/tambah', [BeritaController::class, 'tambahBerita']);
