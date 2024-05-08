@@ -76,9 +76,9 @@ class BeritaController extends Controller
     public function browseBerita(Request $request)
     {
         $berita = ModelBerita::where(function ($query) use ($request) {
-            $query->where('judul_berita', 'LIKE', '%' . $request->search . '%')
-            ->orWhere('tanggal_berita', 'LIKE', '%' . $request->search . '%')
-            ->orWhere('kategori', 'LIKE', '%' . $request->search . '%');
+            $query->where('judul', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('created_at', 'LIKE', '%' . $request->search . '%');
+            // ->orWhere('id_kategori', 'LIKE', '%' . $request->search . '%');
         })
         // ->where(function ($quer) use ($request) {
         //     $quer->where('email', 'LIKE', '%' . $request->email . '%');
