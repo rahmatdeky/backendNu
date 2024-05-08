@@ -7,35 +7,50 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Berita\ModelBerita;
 use File;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class BeritaController extends Controller
 {
     public function tambahBerita(Request $request)
     {
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $fileName = $file->getClientOriginalName();
-            $path = 'public/file/berita/' . $fileName;
-            Storage::disk('public')->put($path, file_get_contents($file));
-        }
-        // $imagePath = $request->file('file')->store('public/file/berita', 'public');
-
-        $berita = ModelBerita::create([
-            'judul_berita' => $request->judul,
-            'isi_berita' => $request->isi,
-            'kategori' => $request->kategori,
-            'tanggal_berita' => now(),
-            'nama_file' => $path
-        ]);
-
-        if ($berita) {
-            return response()->json([
-                'status' => 'berhasil'
+        try {
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $fileName = $file->getClientOriginalName();
+                $path = 'public/file/berita/' . $fileName;
+                Storage::disk('public')->put($path, file_get_contents($file));
+            }
+            // $imagePath = $request->file('file')->store('public/file/berita', 'public');
+    
+            $berita = ModelBerita::create([
+                'judul' => $request->judul,
+                'deskripsi' => $request->isi,
+                'id_kategori' => $request->kategori,
+                'created_at' => now(),
+                'gambar' => $path,
+                'id_user' => auth()->user()->id
             ]);
-        } else {
+    
+            if ($berita) {
+                return response()->json([
+                    'title' => 'Berhasil',
+                    'text' => 'Data Berhasil Disimpan',
+                    'icon' => 'success'
+                ]);
+            } else {
+                return response()->json([
+                    'title' => 'Gagal',
+                    'text' => 'Data Gagal Disimpan',
+                    'icon' => 'error'
+                ]);
+            }
+        } catch (\Exception $e) {
             return response()->json([
-                'status' => 'gagal'
-            ]);
+                'title' => 'gagal',
+                'text' => $e->getMessage(),
+                'icon' => 'error'
+            ], 400); // Bad Request
         }
     }
 

@@ -11,5 +11,5 @@ class ModelBerita extends Model
     protected $primaryKey = 'id_berita';
     public $incrementing = false;
     public $timestamps = false;
-    protected $fillable = ['id_berita', 'tanggal_berita', 'judul_berita', 'isi_berita', 'kategori', 'nama_file'];
+    protected $fillable = ['id', 'id_user', 'id_kategori', 'judul', 'deskripsi', 'gambar', 'created_at', 'updated_at', 'view'];
 }
