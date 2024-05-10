@@ -9,6 +9,7 @@ use App\Http\Controllers\berita\BeritaController;
 use App\Http\Controllers\pengurus\pengurusController;
 use App\Http\Controllers\lembaga\lembagaController;
 use App\Http\Controllers\LandingPage\LandingPageController;
+use App\Http\Controllers\referensi\ReferensiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Referensi
     Route::get('/refKecamatan', [pengurusController::class, 'getRefKecamatan']);
+    Route::post('ref/kategori/add', [ReferensiController::class, 'addKategori']);
+    Route::post('ref/kategori/browse', [ReferensiController::class, 'browseKategori']);
+    Route::post('ref/kategori/edit', [ReferensiController::class, 'editKategori']);
 });
 Route::post('/registrasi', [AuthController::class, 'registrasi']);
 
