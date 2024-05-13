@@ -116,4 +116,57 @@ class ReferensiController extends Controller
             ]);
         }
     }
+
+    public function addKelurahan(Request $request)
+    {
+        $addKelurahan = ModelKelurahan::create([
+            'nama_kelurahan' => $request->namaKelurahan,
+            'kode_kecamatan' => $request->kodeKecamatan,
+            'created_at' => now()
+        ]);
+
+        if ($addKelurahan) {
+            return response()->json([
+                'title' => 'Berhasil',
+                'text' => 'Data Berhasil Disimpan',
+                'icon' => 'success'
+            ]);
+        } else {
+            return response()->json([
+                'title' => 'Gagal',
+                'text' => 'Data Gagal Disimpan',
+                'icon' => 'error'
+            ]);
+        }
+    }
+
+    public function browseKelurahan(Request $request)
+    {
+        $dataKelurahan = ModelKelurahan::with('kecamatan')->get();
+        return response()->json($dataKelurahan);
+    }
+
+    public function editKelurahan(Request $request)
+    {
+        $editKelurahan = ModelKelurahan::where('kode_kelurahan', $request->id)
+        ->update([
+            'nama_kelurahan' => $request->namaKelurahan,
+            'kode_kecamatan' => $request->kodeKecamatan,
+            'updated_at' => now()
+        ]);
+
+        if ($editKelurahan) {
+            return response()->json([
+                'title' => 'Berhasil',
+                'text' => 'Data Berhasil Diubah',
+                'icon' => 'success'
+            ]);
+        } else {
+            return response()->json([
+                'title' => 'Gagal',
+                'text' => 'Data Gagal Diubah',
+                'icon' => 'error'
+            ]);
+        }
+    }
 }
