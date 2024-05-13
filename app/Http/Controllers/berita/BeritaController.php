@@ -75,10 +75,13 @@ class BeritaController extends Controller
 
     public function browseBerita(Request $request)
     {
-        $berita = ModelBerita::where(function ($query) use ($request) {
+        $berita = ModelBerita::with('kategori')->where(function ($query) use ($request) {
             $query->where('judul', 'LIKE', '%' . $request->search . '%')
             ->orWhere('created_at', 'LIKE', '%' . $request->search . '%');
             // ->orWhere('id_kategori', 'LIKE', '%' . $request->search . '%');
+        })
+        ->orWhereHas('kategori', function ($query) use ($request) {
+            $query->where('nama', 'LIKE', '%' . $request->search . '%');
         })
         // ->where(function ($quer) use ($request) {
         //     $quer->where('email', 'LIKE', '%' . $request->email . '%');
@@ -129,12 +132,12 @@ class BeritaController extends Controller
 
     public function hapusBerita(Request $request)
     {
-        $getUrlFileBerita = ModelBerita::where('id_berita', $request->id_berita)
-        ->value('nama_file');
+        $getUrlFileBerita = ModelBerita::where('id', $request->id_berita)
+        ->value('gambar');
         
         $deleteFile = Storage::delete('public/' . $getUrlFileBerita);
         
-        $deleteBerita = ModelBerita::where('id_berita', $request->id_berita)
+        $deleteBerita = ModelBerita::where('id', $request->id_berita)
         ->delete();
 
         if ($deleteFile && $deleteBerita) {

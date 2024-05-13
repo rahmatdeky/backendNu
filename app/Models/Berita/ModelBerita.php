@@ -15,6 +15,6 @@ class ModelBerita extends Model
 
     public function kategori()
     {
-        return $this->belongsTo('App\Models\Referensi\kategori', 'id', 'id_kategori');
+        return $this->belongsTo('App\Models\Referensi\kategori', 'id_kategori', 'id');
     }
 }
