@@ -76,6 +76,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('ref/kategori/add', [ReferensiController::class, 'addKategori']);
     Route::post('ref/kategori/browse', [ReferensiController::class, 'browseKategori']);
     Route::post('ref/kategori/edit', [ReferensiController::class, 'editKategori']);
+    Route::post('ref/kecamatan/add', [ReferensiController::class, 'addKecamatan']);
+    Route::post('ref/kecamatan/edit', [ReferensiController::class, 'editKecamatan']);
+    Route::get('ref/kecamatan/browse', [ReferensiController::class, 'browseKecamatan']);
 });
 Route::post('/registrasi', [AuthController::class, 'registrasi']);
 
