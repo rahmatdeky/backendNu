@@ -28,6 +28,7 @@ class BeritaController extends Controller
                 'deskripsi' => $request->isi,
                 'id_kategori' => $request->kategori,
                 'created_at' => now(),
+                'tanggal' => now(),
                 'gambar' => $path,
                 'id_user' => auth()->user()->id
             ]);
@@ -100,22 +101,22 @@ class BeritaController extends Controller
             Storage::delete('public/' . $request->url);
             Storage::disk('public')->put($path, file_get_contents($file));
 
-            $editFile = ModelBerita::where('id_berita', $request->id_berita)
+            $editFile = ModelBerita::where('id', $request->id_berita)
             ->update([
-                'nama_file' => $path
+                'gambar' => $path
             ]);
         }
         // $imagePath = $request->file('file')->store('public/file/berita', 'public');
 
-        $edit = ModelBerita::where('id_berita', $request->id_berita)
+        $edit = ModelBerita::where('id', $request->id_berita)
         ->update([
-            'tanggal_berita' => $request->tanggal_berita,
-            'judul_berita' => $request->judul_berita,
-            'isi_berita' => $request->isi_berita,
-            'kategori' => $request->kategori
+            'tanggal' => $request->tanggal_berita,
+            'judul' => $request->judul_berita,
+            'deskripsi' => $request->isi_berita,
+            'id_kategori' => $request->kategori
         ]);
 
-        if ($edit) {
+        if ($edit && $editFile) {
             return response()->json([
                 'title' => 'Berhasil',
                 'text' => 'Data Berhasil Dirubah',
@@ -157,15 +158,15 @@ class BeritaController extends Controller
 
     public function guestBrowseBerita()
     {
-        $guestBerita = ModelBerita::orderBy('tanggal_berita', 'desc')
-        ->paginate(5);
+        $guestBerita = ModelBerita::orderBy('created_at', 'desc')
+        ->paginate(4);
 
         return response()->json($guestBerita);
     }
 
     public function guestDetailBerita($id)
     {
-        $guestDetailBerita = ModelBerita::where('id_berita', $id)
+        $guestDetailBerita = ModelBerita::with('kategori')->where('id', $id)
         ->first();
 
         return response()->json($guestDetailBerita);
