@@ -158,7 +158,7 @@ class BeritaController extends Controller
 
     public function guestBrowseBerita()
     {
-        $guestBerita = ModelBerita::orderBy('created_at', 'desc')
+        $guestBerita = ModelBerita::with('kategori')->orderBy('created_at', 'desc')
         ->paginate(4);
 
         return response()->json($guestBerita);
@@ -170,5 +170,13 @@ class BeritaController extends Controller
         ->first();
 
         return response()->json($guestDetailBerita);
+    }
+
+    public function guestPopulerBerita()
+    {
+        $populer = ModelBerita::with('kategori')->orderBy('view', 'desc')
+        ->get();
+
+        return response()->json($populer);
     }
 }

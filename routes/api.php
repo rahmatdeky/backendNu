@@ -88,6 +88,8 @@ Route::post('/registrasi', [AuthController::class, 'registrasi']);
 // Guest Berita
 Route::get('/berita/guest/browse', [BeritaController::class, 'guestBrowseBerita']);
 Route::get('/berita/guest/detail/{id}', [BeritaController::class, 'guestDetailBerita']);
+Route::get('/berita/guest/populer', [BeritaController::class, 'guestPopulerBerita']);
+Route::get('/ref/kategori/browse', [ReferensiController::class, 'browseKategori']);
 
 // Get Carousel
 Route::get('/page/landing/carousel/image/used', [LandingPageController::class, 'getCarouselImgUsed']);
