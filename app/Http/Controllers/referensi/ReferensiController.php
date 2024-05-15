@@ -89,7 +89,7 @@ class ReferensiController extends Controller
 
     public function browseKecamatan(Request $request)
     {
-        $dataKecamatan = ModelKecamatan::all();
+        $dataKecamatan = ModelKecamatan::with('kelurahan')->get();
         return response()->json($dataKecamatan);
     }
 

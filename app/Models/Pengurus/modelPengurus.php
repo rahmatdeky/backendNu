@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class modelPengurus extends Model
 {
-    protected $table = 'pengurus';
-    protected $primaryKey = 'id_berita';
+    protected $table = 'warga';
+    protected $primaryKey = 'id';
     public $incrementing = false;
     public $timestamps = false;
-    protected $fillable = ['NIK', 'nama_pengurus', 'alamat_pengurus', 'organisasi', 'jabatan', 'no_hp', 'email','RW', 'RT', 'kecamatan', 'kelurahan'];
+    protected $fillable = ['id', 'nik', 'kode_kelurahan', 'kode_organisasi', 'nama', 'email', 'jabatan', 'no_hp', 'created_at', 'updated_at', 'alamat'];
 }

@@ -7,47 +7,89 @@ use Illuminate\Http\Request;
 use App\Models\Pengurus\modelPengurus;
 use App\Models\ModelKecamatan;
 use App\Models\ModelKelurahan;
+use App\Models\Users;
+use Hash;
 
 class pengurusController extends Controller
 {
     public function tambahPengurus(Request $request)
     {
-        $tambah = modelPengurus::create([
-            'NIK' => $request->nik,
-            'nama_pengurus' => $request->namaLengkap,
-            'alamat_pengurus' => $request->alamat,
-            'organisasi' => $request->organisasi,
-            'jabatan' => $request->jabatan,
-            'no_hp' => $request->nomorHp,
-            'email' => $request->email,
-            'RW' => $request->RW,
-            'RT' => $request->RT,
-            'kecamatan' => $request->kecamatan,
-            'kelurahan' => $request->kelurahan
-        ]);
+        $getNIK = modelPengurus::where('nik', $request->nik)->first();
 
-        if ($tambah) {
-            return response()->json([
-                'title' => 'Berhasil',
-                'text' => 'Data Berhasil Disimpan',
-                'icon' => 'success'
-            ]);
-        } else {
+        if ($getNIK) {
             return response()->json([
                 'title' => 'Gagal',
-                'text' => 'Data Gagal Disimpan',
+                'text' => 'NIK Sudah Terdaftar',
                 'icon' => 'error'
             ]);
+        } else {
+            if ($request->jabatan == 'Pengurus') {
+                $addUser = Users::create([
+                    'name' => $request->namaLengkap,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'role' => 'pengurus'
+                ]);
+    
+                $tambah = modelPengurus::create([
+                    'nik' => $request->nik,
+                    'kode_kelurahan' => $request->kelurahan,
+                    'nama' => $request->namaLengkap,
+                    'email' => $request->email,
+                    'jabatan' => $request->jabatan,
+                    'no_hp' => $request->nomorHp,
+                    'created_at' => now()
+                ]);
+    
+                if ($tambah && $addUser) {
+                    return response()->json([
+                        'title' => 'Berhasil',
+                        'text' => 'Data Berhasil Disimpan',
+                        'icon' => 'success'
+                    ]);
+                } else {
+                    return response()->json([
+                        'title' => 'Gagal',
+                        'text' => 'Data Gagal Disimpan',
+                        'icon' => 'error'
+                    ]);
+                }
+            } else {
+                $tambah = modelPengurus::create([
+                    'nik' => $request->nik,
+                    'kode_kelurahan' => $request->kelurahan,
+                    'nama' => $request->namaLengkap,
+                    'email' => $request->email,
+                    'jabatan' => $request->jabatan,
+                    'no_hp' => $request->nomorHp,
+                    'created_at' => now(),
+                    'alamat' => $request->alamat
+                ]);
+        
+                if ($tambah) {
+                    return response()->json([
+                        'title' => 'Berhasil',
+                        'text' => 'Data Berhasil Disimpan',
+                        'icon' => 'success'
+                    ]);
+                } else {
+                    return response()->json([
+                        'title' => 'Gagal',
+                        'text' => 'Data Gagal Disimpan',
+                        'icon' => 'error'
+                    ]);
+                }
+            }
         }
     }
 
     public function browsePengurus(Request $request)
     {
         $browse = modelPengurus::where(function ($query) use ($request) {
-            $query->where('NIK', 'LIKE', '%' . $request->search . '%')
-            ->orWhere('nama_pengurus', 'LIKE', '%' . $request->search . '%')
-            ->orWhere('alamat_pengurus', 'LIKE', '%' . $request->search . '%')
-            ->orWhere('organisasi', 'LIKE', '%' . $request->search . '%');
+            $query->where('nik', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('nama', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('alamat', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('jabatan', 'LIKE', '%' . $request->search . '%');
         })
         ->paginate(10);
 
@@ -95,7 +137,7 @@ class pengurusController extends Controller
 
     public function deletePengurus(Request $request)
     {
-        $delete = modelPengurus::where('NIK', $request->NIK)
+        $delete = modelPengurus::where('nik', $request->NIK)
         ->delete();
 
         if ($delete) {

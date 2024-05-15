@@ -51,11 +51,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/berita/edit', [BeritaController::class, 'editBerita']);
     Route::post('/berita/delete', [BeritaController::class, 'hapusBerita']);
 
-    // Pengurus
-    Route::post('/pengurus/tambah', [pengurusController::class, 'tambahPengurus']);
-    Route::get('/pengurus/detail/{NIK}', [pengurusController::class, 'getDetailPengurus']);
-    Route::post('/pengurus/detail/edit', [pengurusController::class, 'editDetailPengurus']);
-    Route::post('/pengurus/delete', [pengurusController::class, 'deletePengurus']);
+    // Warga
+    Route::post('/warga/tambah', [pengurusController::class, 'tambahPengurus']);
+    Route::get('/warga/detail/{NIK}', [pengurusController::class, 'getDetailPengurus']);
+    Route::post('/warga/detail/edit', [pengurusController::class, 'editDetailPengurus']);
+    Route::post('/warga/delete', [pengurusController::class, 'deletePengurus']);
     
     // Lembaga
     Route::post('/lembaga/tambah', [lembagaController::class, 'tambahLembaga']);
@@ -98,7 +98,7 @@ Route::get('/page/landing/carousel/image/used', [LandingPageController::class, '
 Route::get('/page/landing/highlihgt/get', [LandingPageController::class, 'getHighlight']);
 
 // Get Pengurus
-Route::post('/pengurus/browse', [pengurusController::class, 'browsePengurus']);
+Route::post('/warga/browse', [pengurusController::class, 'browsePengurus']);
 Route::get('get/pengurus', [pengurusController::class, 'getPengurus']);
 Route::get('get/kecamatan', [pengurusController::class, 'getKecamatan']);
 
