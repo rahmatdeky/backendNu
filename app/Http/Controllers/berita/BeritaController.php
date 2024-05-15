@@ -156,10 +156,15 @@ class BeritaController extends Controller
         }
     }
 
-    public function guestBrowseBerita()
+    public function guestBrowseBerita(Request $request)
     {
-        $guestBerita = ModelBerita::with('kategori')->orderBy('created_at', 'desc')
-        ->paginate(4);
+        $query = ModelBerita::with('kategori')->orderBy('created_at', 'desc');
+
+        if ($request->has('id_kategori')) {
+            $query->where('id_kategori', $request->id_kategori);
+        }
+
+        $guestBerita = $query->paginate(4);
 
         return response()->json($guestBerita);
     }
