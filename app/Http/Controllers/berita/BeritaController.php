@@ -171,6 +171,12 @@ class BeritaController extends Controller
 
     public function guestDetailBerita($id)
     {
+        $getView = ModelBerita::where('id', $id)->value('view');
+        $plusView = $getView + 1;
+        $updateView = ModelBerita::where('id', $id)->update([
+            'view' => $plusView
+        ]);
+
         $guestDetailBerita = ModelBerita::with('kategori')->where('id', $id)
         ->first();
 
