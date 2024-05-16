@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2024 at 01:48 PM
+-- Generation Time: May 16, 2024 at 01:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,10 +45,10 @@ CREATE TABLE `berita` (
 --
 
 INSERT INTO `berita` (`id`, `id_user`, `id_kategori`, `judul`, `deskripsi`, `gambar`, `created_at`, `updated_at`, `view`, `tanggal`) VALUES
-(5, 14, 2, 'Pelantikan Pengurus PCNU Kota Batam', 'Alhamdulillah pada hari Sabtu, 24 juni 2023 telah dilaksanakan pelantikan Pengurus PCNU Kota Batam di Aula PIH Batam Center.\r\nAcara pelantikan dihadiri Wakil Skejen PBNU KH Sulaiman Tanjung, Walikota Batam H.Muhammad Rudi, Wakil Gubernur Provinsi Kepri Hj Marlin Agustina, Ketua PWNU Kepri Dr H Mahbub Daryanto, Para Kyai, Ulama Tokoh NU di Kota Batam.\r\nPada acara tersebut juga dilaksanakan launching program pelatihan untuk generasi muda yang bekerjasama dengan Politeknik Negeri Batam, IA ITB, IKA ITS, IKA UNDIP, juga dilaksanakan MoU dengan perusahaan yang akan menerima SDM yang sudah dilatih.\r\nPCNU Batam juga menyerahkan secara simbolis hewan qurban berupa 12 ekor sapi kepada pengurus MWCNU di setiap kecamatan di Kota Batam.\r\nDalam sambutannya Walikota Batam menyampaikan agar NU terus berperan dalam menjaga tingkat toleransi dan kerukunan umat beragama di Kota Batam yang saat ini sudah sangat baik dan mendapat peringkat tertinggi di Provinsi Kepri.', 'public/file/berita/pelantikan.jpeg', '2024-05-14 03:28:30', NULL, NULL, '2024-05-14'),
-(6, 14, 2, 'Peringatan Hari Santri dan Maulid', 'PCNU Kota Batam beserta seluruh Banom mengadakan serangkaian kegiatan peringatan hari Santri dan Maulid Nabi Muhammad SAW.\r\nIstighosah dan Pengajian Umum telah diselenggarakan pada hari Ahad, 22 Oktober 2023 Pukul 19.30 s.d Selesai bertempat di Masjid An Nahdlah NU Center Kepri Batam Center.\r\nTausiyah disampaikan oleh KH Masyhuri Malik. Ketua PBNU. Alhamdulillah acara berjalan dengan lancar, semoga membawa keberkahan.', 'public/file/berita/istighosah.jpeg', '2024-05-14 03:28:58', NULL, NULL, '2024-05-14'),
-(7, 14, 2, 'Pelaksanaan Pelatihan Fitter Angkatan ke 2', 'Ketua PBNU (KH Masyhuri Malik) mengunjungi Pelatihan Fitter utk Industri Galangan Kapal Batch ke-2 di Politeknik Negeri Batam. Diikuti 30 peserta dari Banser dan Pagar Nusa. Ini merupakan Program LPNU -PCNU Batam bekerjasama dgn IA ITB, IA ITS, IA Undip dan Politeknik Negeri Batam.\r\nMohon doa nya semoga diberikan lancar dan membawa manfaat.', 'public/file/berita/fitter.jpeg', '2024-05-14 03:29:23', NULL, NULL, '2024-05-14'),
-(8, 14, 2, 'PDPKPNU Angkatan ke 2 PCNU Batam', 'KH Masyhuri Malik, instruktur pusat PBNU secara resmi menutup PD-PKPNU angkatan ke-ll PCNU Batam. Penutupan PD-PKPNU dirangkai dengan prosesi baiat yang dilaksanakan di halaman utama Pondok Pesantren Al Ustmaniyah, Sagulung, Batam.\r\nSetelah mengikuti semua rangkaian kegiatan kaderisasi dasa (PD-PKPNU) angkatan ke-ll PCNU Batam, keseluruhan peserta yang berjumlah 131 orang itu telah di-bai\'t dan dinyatakan lulus PD-PKPNU.\r\n\r\nSelengkapnya:\r\nhttps://kepri.nu.or.id/daerah/kh-masyhuri-malik-tutup-pd-pkpnu-angkatan-ke-ll-batam-MQQNA?fbclid=IwAR3Co63NU4nWbWunVPnPvTwNe8Oplo15L_rHnSoZEefkvboWo-E0oTEud9U', 'public/file/berita/pdpkp.jpeg', '2024-05-14 03:29:44', NULL, NULL, '2024-05-14');
+(5, 14, 3, 'Pelantikan Pengurus PCNU Kota Batam', 'Alhamdulillah pada hari Sabtu, 24 juni 2023 telah dilaksanakan pelantikan Pengurus PCNU Kota Batam di Aula PIH Batam Center.\r\nAcara pelantikan dihadiri Wakil Skejen PBNU KH Sulaiman Tanjung, Walikota Batam H.Muhammad Rudi, Wakil Gubernur Provinsi Kepri Hj Marlin Agustina, Ketua PWNU Kepri Dr H Mahbub Daryanto, Para Kyai, Ulama Tokoh NU di Kota Batam.\r\nPada acara tersebut juga dilaksanakan launching program pelatihan untuk generasi muda yang bekerjasama dengan Politeknik Negeri Batam, IA ITB, IKA ITS, IKA UNDIP, juga dilaksanakan MoU dengan perusahaan yang akan menerima SDM yang sudah dilatih.\r\nPCNU Batam juga menyerahkan secara simbolis hewan qurban berupa 12 ekor sapi kepada pengurus MWCNU di setiap kecamatan di Kota Batam.\r\nDalam sambutannya Walikota Batam menyampaikan agar NU terus berperan dalam menjaga tingkat toleransi dan kerukunan umat beragama di Kota Batam yang saat ini sudah sangat baik dan mendapat peringkat tertinggi di Provinsi Kepri.', 'public/file/berita/pelantikan.jpeg', '2024-05-14 03:28:30', NULL, 4, '2024-05-14'),
+(6, 14, 2, 'Peringatan Hari Santri dan Maulid', 'PCNU Kota Batam beserta seluruh Banom mengadakan serangkaian kegiatan peringatan hari Santri dan Maulid Nabi Muhammad SAW.\r\nIstighosah dan Pengajian Umum telah diselenggarakan pada hari Ahad, 22 Oktober 2023 Pukul 19.30 s.d Selesai bertempat di Masjid An Nahdlah NU Center Kepri Batam Center.\r\nTausiyah disampaikan oleh KH Masyhuri Malik. Ketua PBNU. Alhamdulillah acara berjalan dengan lancar, semoga membawa keberkahan.', 'public/file/berita/istighosah.jpeg', '2024-05-14 03:28:58', NULL, 1, '2024-05-14'),
+(7, 14, 4, 'Pelaksanaan Pelatihan Fitter Angkatan ke 2', 'Ketua PBNU (KH Masyhuri Malik) mengunjungi Pelatihan Fitter utk Industri Galangan Kapal Batch ke-2 di Politeknik Negeri Batam. Diikuti 30 peserta dari Banser dan Pagar Nusa. Ini merupakan Program LPNU -PCNU Batam bekerjasama dgn IA ITB, IA ITS, IA Undip dan Politeknik Negeri Batam.\r\nMohon doa nya semoga diberikan lancar dan membawa manfaat.', 'public/file/berita/fitter.jpeg', '2024-05-14 03:29:23', NULL, 3, '2024-05-14'),
+(8, 14, 2, 'PDPKPNU Angkatan ke 2 PCNU Batam', 'KH Masyhuri Malik, instruktur pusat PBNU secara resmi menutup PD-PKPNU angkatan ke-ll PCNU Batam. Penutupan PD-PKPNU dirangkai dengan prosesi baiat yang dilaksanakan di halaman utama Pondok Pesantren Al Ustmaniyah, Sagulung, Batam.\r\nSetelah mengikuti semua rangkaian kegiatan kaderisasi dasa (PD-PKPNU) angkatan ke-ll PCNU Batam, keseluruhan peserta yang berjumlah 131 orang itu telah di-bai\'t dan dinyatakan lulus PD-PKPNU.\r\n\r\nSelengkapnya:\r\nhttps://kepri.nu.or.id/daerah/kh-masyhuri-malik-tutup-pd-pkpnu-angkatan-ke-ll-batam-MQQNA?fbclid=IwAR3Co63NU4nWbWunVPnPvTwNe8Oplo15L_rHnSoZEefkvboWo-E0oTEud9U', 'public/file/berita/pdpkp.jpeg', '2024-05-14 03:29:44', NULL, 4, '2024-05-14');
 
 -- --------------------------------------------------------
 
@@ -113,7 +113,8 @@ INSERT INTO `kecamatan` (`kode_kecamatan`, `kode_kemendagri`, `nama_kecamatan`, 
 (1, '21.71.10', 'Batam Kota', '2024-05-13 06:24:31', '2024-05-13 08:29:10'),
 (2, '21.71.12', 'Batu Aji', '2024-05-13 06:25:17', NULL),
 (3, '21.71.02', 'Batu Ampar', '2024-05-13 06:43:41', NULL),
-(4, '21.71.01', 'Belakang Padang', '2024-05-13 06:44:12', NULL);
+(4, '21.71.01', 'Belakang Padang', '2024-05-13 06:44:12', NULL),
+(5, '21.71.06', 'Lubuk Baja', '2024-05-15 07:21:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -136,7 +137,8 @@ CREATE TABLE `kelurahan` (
 INSERT INTO `kelurahan` (`kode_kelurahan`, `kode_kecamatan`, `nama_kelurahan`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Baloi Permai', '2024-05-13 09:28:36', '2024-05-13 10:07:18'),
 (2, 2, 'Tanjung Uncang', '2024-05-13 09:46:44', NULL),
-(3, 3, 'Sungai Jodoh', '2024-05-13 09:47:10', NULL);
+(3, 3, 'Sungai Jodoh', '2024-05-13 09:47:10', NULL),
+(4, 5, 'Baloi Indah', '2024-05-15 07:21:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -156,7 +158,9 @@ CREATE TABLE `lembaga` (
   `website` varchar(255) DEFAULT NULL,
   `no_kontak` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  `jenis_kerjasama` varchar(255) DEFAULT NULL,
+  `nama_pimpinan` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -231,9 +235,8 @@ CREATE TABLE `personal_access_tokens` (
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
 (10, 'App\\Models\\User', 13, 'token', 'f4c87ccc0730552ff8a996044fb815f9a22ef3ca81b8a5015e56f73e70be7c91', '[\"*\"]', '2024-05-06 07:19:25', NULL, '2024-05-03 01:45:08', '2024-05-06 07:19:25'),
-(12, 'App\\Models\\User', 14, 'token', 'a06dcc720e4ebd2a656ffe6fe8eedd367300e46f6b422c4d74465100e3360794', '[\"*\"]', '2024-05-13 20:29:45', NULL, '2024-05-07 19:47:54', '2024-05-13 20:29:45'),
 (13, 'App\\Models\\User', 1, 'token', 'be9ee4aadb5e5d7ca146b454a2a6bddf041bb926ec19453a441380b9568ad892', '[\"*\"]', '2024-05-13 02:37:02', NULL, '2024-05-13 02:36:02', '2024-05-13 02:37:02'),
-(14, 'App\\Models\\User', 14, 'token', '79d006d29934c6e7506595955b0a4a451a6ee20beab11da16c5bf141aeafb361', '[\"*\"]', '2024-05-13 07:40:37', NULL, '2024-05-13 07:40:37', '2024-05-13 07:40:37');
+(15, 'App\\Models\\User', 14, 'token', '1b2625aeaf567f8c87be40a3153a47d13554bbefdcdb376d56bc2f44c3eb72fa', '[\"*\"]', '2024-05-16 02:10:36', NULL, '2024-05-14 19:40:12', '2024-05-16 02:10:36');
 
 -- --------------------------------------------------------
 
@@ -270,16 +273,24 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 
 CREATE TABLE `warga` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `nik` int(11) NOT NULL,
+  `nik` bigint(20) NOT NULL,
   `kode_kelurahan` int(11) NOT NULL,
   `kode_organisasi` int(11) DEFAULT NULL,
   `nama` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `jabatan` varchar(255) DEFAULT NULL,
-  `no_hp` int(11) DEFAULT NULL,
+  `no_hp` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `warga`
+--
+
+INSERT INTO `warga` (`id`, `nik`, `kode_kelurahan`, `kode_organisasi`, `nama`, `email`, `jabatan`, `no_hp`, `created_at`, `updated_at`, `alamat`) VALUES
+(7, 3522141407980001, 4, NULL, 'Rahmat Deky Sofyan Hidayat', 'ryohideky@gmail.com', 'Warga', '+6282233277017', '2024-05-15 09:00:39', NULL, 'Komplek Bea Cukai Baloi');
 
 --
 -- Indexes for dumped tables
@@ -359,7 +370,8 @@ ALTER TABLE `users`
 -- Indexes for table `warga`
 --
 ALTER TABLE `warga`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nik` (`nik`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -387,13 +399,13 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
-  MODIFY `kode_kecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `kode_kecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `kelurahan`
 --
 ALTER TABLE `kelurahan`
-  MODIFY `kode_kelurahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `kode_kelurahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `lembaga`
@@ -417,19 +429,19 @@ ALTER TABLE `organisasi`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `warga`
 --
 ALTER TABLE `warga`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
