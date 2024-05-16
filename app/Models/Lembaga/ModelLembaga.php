@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ModelLembaga extends Model
 {
     protected $table = 'lembaga';
-    protected $primaryKey = 'id_lembaga';
+    protected $primaryKey = 'id';
     public $incrementing = false;
     public $timestamps = false;
-    protected $fillable = ['id_lembaga', 'nama_lembaga', 'jenjang', 'jenis_lembaga', 'alamat', 'nama_pimpinan', 'jenis_kerjasama', 'no_kontak', 'email', 'website','RT', 'RW', 'kecamatan', 'kelurahan'];
+    protected $fillable = ['id', 'kode_kelurahan', 'kode_kecamatan', 'nama', 'alamat', 'jenjang', 'jenis_lembaga', 'email', 'website', 'no_kontak', 'created_at', 'updated_at', 'jenis_kerjasama', 'nama_pimpinan'];
 }
