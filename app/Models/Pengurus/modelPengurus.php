@@ -12,4 +12,10 @@ class modelPengurus extends Model
     public $incrementing = false;
     public $timestamps = false;
     protected $fillable = ['id', 'nik', 'kode_kelurahan', 'kode_organisasi', 'nama', 'email', 'jabatan', 'no_hp', 'created_at', 'updated_at', 'alamat'];
+
+    public function kelurahan()
+    {
+        return $this->belongsTo('App\Models\Referensi\ModelKelurahan', 'kode_kelurahan', 'kode_kelurahan');
+    }
 }
+

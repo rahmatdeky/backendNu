@@ -98,7 +98,7 @@ class pengurusController extends Controller
 
     public function getDetailPengurus($NIK)
     {
-        $detail = modelPengurus::where('NIK', $NIK)
+        $detail = modelPengurus::with(['kelurahan.kecamatan'])->where('nik', $NIK)
         ->first();
 
         return response()->json($detail);
@@ -106,18 +106,15 @@ class pengurusController extends Controller
 
     public function editDetailPengurus(Request $request)
     {
-        $edit = modelPengurus::where('NIK', $request->nik)
+        $edit = modelPengurus::where('nik', $request->nik)
         ->update([
-            'nama_pengurus' => $request->nama,
-            'alamat_pengurus' => $request->alamat,
-            'organisasi' => $request->organisasi,
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'kode_organisasi' => $request->organisasi,
             'jabatan' => $request->jabatan,
             'no_hp' => $request->nomorHp,
             'email' => $request->email,
-            'RT' => $request->RT,
-            'RW' => $request->RW,
-            'kecamatan' => $request->kecamatan,
-            'kelurahan' => $request->kelurahan
+            'kode_kelurahan' => $request->kelurahan
         ]);
 
         if ($edit) {

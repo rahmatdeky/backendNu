@@ -17,4 +17,9 @@ class ModelKelurahan extends Model
     {
         return $this->belongsTo('App\Models\Referensi\ModelKecamatan', 'kode_kecamatan', 'kode_kecamatan');
     }
+
+    public function warga()
+    {
+        return $this->hasMany('App\Models\Pengurus\modelPengurus', 'kode_kelurahan', 'kode_kelurahan');
+    }
 }
