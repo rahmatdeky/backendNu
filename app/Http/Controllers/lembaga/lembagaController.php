@@ -43,8 +43,9 @@ class lembagaController extends Controller
     public function browseLembaga(Request $request)
     {
         $browse = ModelLembaga::where(function ($query) use ($request) {
-            $query->where('nama_lembaga', 'LIKE', '%' . $request->search . '%')
+            $query->where('nama', 'LIKE', '%' . $request->search . '%')
             ->orWhere('jenjang', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('jenis_kerjasama', 'LIKE', '%' . $request->search . '%')
             ->orWhere('jenis_lembaga', 'LIKE', '%' . $request->search . '%');
         })->paginate(10);
 
@@ -53,7 +54,7 @@ class lembagaController extends Controller
 
     public function detailLembaga($id)
     {
-        $detail = ModelLembaga::where('id_lembaga', $id)
+        $detail = ModelLembaga::with(['kelurahan.kecamatan'])->where('id', $id)
         ->first();
 
         return response()->json($detail);
@@ -61,9 +62,9 @@ class lembagaController extends Controller
 
     public function editLembaga(Request $request)
     {
-        $edit = ModelLembaga::where('id_lembaga', $request->idLembaga)
+        $edit = ModelLembaga::where('id', $request->idLembaga)
         ->update([
-            'nama_lembaga' => $request->namaLembaga,
+            'nama' => $request->namaLembaga,
             'jenjang' => $request->jenjang,
             'jenis_lembaga' => $request->jenisLembaga,
             'alamat' => $request->alamat,
@@ -72,10 +73,8 @@ class lembagaController extends Controller
             'no_kontak' => $request->nomorKontak,
             'email' => $request->email,
             'website' => $request->website,
-            'RT' => $request->RT,
-            'RW' => $request->RW,
-            'kecamatan' => $request->kecamatan,
-            'kelurahan' => $request->kelurahan
+            'kode_kecamatan' => $request->kecamatan,
+            'kode_kelurahan' => $request->kelurahan
         ]);
 
         if ($edit) {
@@ -95,7 +94,7 @@ class lembagaController extends Controller
 
     public function deleteLembaga(Request $request)
     {
-        $delete = ModelLembaga::where('id_lembaga', $request->id)
+        $delete = ModelLembaga::where('id', $request->id)
         ->delete();
 
         if ($delete) {
