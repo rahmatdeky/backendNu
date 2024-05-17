@@ -13,4 +13,9 @@ class ModelOrganisasi extends Model
     public $incrementing = false;
     public $timestamps = false;
     protected $fillable = ['kode_organisasi', 'nama', 'created_at', 'updated_at'];
+
+    public function warga()
+    {
+        return $this->hasMany('App\Models\Pengurus\modelPengurus', 'kode_organisasi', 'kode_organisasi');
+    }
 }

@@ -17,5 +17,10 @@ class modelPengurus extends Model
     {
         return $this->belongsTo('App\Models\Referensi\ModelKelurahan', 'kode_kelurahan', 'kode_kelurahan');
     }
+
+    public function organisasi()
+    {
+        return $this->belongsTo('App\Models\Referensi\ModelOrganisasi', 'kode_organisasi', 'kode_organisasi');
+    }
 }
 

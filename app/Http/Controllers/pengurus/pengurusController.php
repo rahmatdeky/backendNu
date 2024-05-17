@@ -38,7 +38,9 @@ class pengurusController extends Controller
                     'email' => $request->email,
                     'jabatan' => $request->jabatan,
                     'no_hp' => $request->nomorHp,
-                    'created_at' => now()
+                    'created_at' => now(),
+                    'alamat' => $request->alamat,
+                    'kode_organisasi' => $request->organisasi
                 ]);
     
                 if ($tambah && $addUser) {
@@ -63,7 +65,8 @@ class pengurusController extends Controller
                     'jabatan' => $request->jabatan,
                     'no_hp' => $request->nomorHp,
                     'created_at' => now(),
-                    'alamat' => $request->alamat
+                    'alamat' => $request->alamat,
+                    'kode_organisasi' => $request->organisasi
                 ]);
         
                 if ($tambah) {
@@ -85,7 +88,7 @@ class pengurusController extends Controller
 
     public function browsePengurus(Request $request)
     {
-        $browse = modelPengurus::where(function ($query) use ($request) {
+        $browse = modelPengurus::with('organisasi')->where(function ($query) use ($request) {
             $query->where('nik', 'LIKE', '%' . $request->search . '%')
             ->orWhere('nama', 'LIKE', '%' . $request->search . '%')
             ->orWhere('alamat', 'LIKE', '%' . $request->search . '%')
@@ -98,7 +101,7 @@ class pengurusController extends Controller
 
     public function getDetailPengurus($NIK)
     {
-        $detail = modelPengurus::with(['kelurahan.kecamatan'])->where('nik', $NIK)
+        $detail = modelPengurus::with(['kelurahan.kecamatan', 'organisasi'])->where('nik', $NIK)
         ->first();
 
         return response()->json($detail);
