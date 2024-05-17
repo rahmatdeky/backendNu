@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\referensi\kategori;
 use App\Models\referensi\ModelKecamatan;
 use App\Models\referensi\ModelKelurahan;
+use App\Models\referensi\ModelOrganisasi;
 
 class ReferensiController extends Controller
 {
@@ -156,6 +157,57 @@ class ReferensiController extends Controller
         ]);
 
         if ($editKelurahan) {
+            return response()->json([
+                'title' => 'Berhasil',
+                'text' => 'Data Berhasil Diubah',
+                'icon' => 'success'
+            ]);
+        } else {
+            return response()->json([
+                'title' => 'Gagal',
+                'text' => 'Data Gagal Diubah',
+                'icon' => 'error'
+            ]);
+        }
+    }
+
+    public function addOrganisasi(Request $request)
+    {
+        $addOrganisasi = ModelOrganisasi::create([
+            'nama' => $request->namaOrganisasi,
+            'created_at' => now()
+        ]);
+
+        if ($addOrganisasi) {
+            return response()->json([
+                'title' => 'Berhasil',
+                'text' => 'Data Berhasil Disimpan',
+                'icon' => 'success'
+            ]);
+        } else {
+            return response()->json([
+                'title' => 'Gagal',
+                'text' => 'Data Gagal Disimpan',
+                'icon' => 'error'
+            ]);
+        }
+    }
+
+    public function browseOrganisasi()
+    {
+        $dataOrganisasi = ModelOrganisasi::get();
+        return response()->json($dataOrganisasi);
+    }
+
+    public function editOrganisasi(Request $request)
+    {
+        $editOrganisasi = ModelOrganisasi::where('kode_organisasi', $request->id)
+        ->update([
+            'nama' => $request->namaOrganisasi,
+            'updated_at' => now()
+        ]);
+
+        if ($editOrganisasi) {
             return response()->json([
                 'title' => 'Berhasil',
                 'text' => 'Data Berhasil Diubah',
