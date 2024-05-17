@@ -12,4 +12,11 @@ class ModelLembaga extends Model
     public $incrementing = false;
     public $timestamps = false;
     protected $fillable = ['id', 'kode_kelurahan', 'kode_kecamatan', 'nama', 'alamat', 'jenjang', 'jenis_lembaga', 'email', 'website', 'no_kontak', 'created_at', 'updated_at', 'jenis_kerjasama', 'nama_pimpinan'];
+
+    public function kelurahan()
+    {
+        return $this->belongsTo('App\Models\Referensi\ModelKelurahan', 'kode_kelurahan', 'kode_kelurahan');
+    }
 }
+
+

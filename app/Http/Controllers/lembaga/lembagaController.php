@@ -11,7 +11,7 @@ class lembagaController extends Controller
     public function tambahLembaga(Request $request)
     {
         $tambah = ModelLembaga::create([
-            'nama_lembaga' => $request->namaLembaga,
+            'nama' => $request->namaLembaga,
             'jenjang' => $request->jenjang,
             'jenis_lembaga'  => $request->jenisLembaga,
             'alamat' => $request->alamat,
@@ -20,10 +20,9 @@ class lembagaController extends Controller
             'no_kontak' => $request->nomorKontak,
             'email' => $request->email,
             'website' => $request->website,
-            'RT' => $request->RT,
-            'RW' => $request->RW,
-            'kecamatan' => $request->kecamatan,
-            'kelurahan' => $request->kelurahan
+            'kode_kecamatan' => $request->kecamatan,
+            'kode_kelurahan' => $request->kelurahan,
+            'created_at' => now()
         ]);
 
         if ($tambah) {

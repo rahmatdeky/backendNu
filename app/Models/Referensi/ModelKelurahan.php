@@ -22,4 +22,9 @@ class ModelKelurahan extends Model
     {
         return $this->hasMany('App\Models\Pengurus\modelPengurus', 'kode_kelurahan', 'kode_kelurahan');
     }
+
+    public function lembaga()
+    {
+        return $this->hasMany('App\Models\Lembaga\ModelLembaga', 'kode_kelurahan', 'kode_kelurahan');
+    }
 }
