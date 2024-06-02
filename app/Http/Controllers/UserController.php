@@ -103,6 +103,7 @@ class UserController extends Controller
 
     public function addUser(Request $request)
     {
+        $path = null;
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $fileName = $file->getClientOriginalName();
@@ -158,7 +159,7 @@ class UserController extends Controller
         $deleteUser = Users::where('id', $request->id_user)
         ->delete();
 
-        if ($deleteFile && $deleteUser) {
+        if ($deleteUser) {
             return response()->json([
                 'title' => 'Berhasil',
                 'text' => 'Data Berhasil Dihapus',
