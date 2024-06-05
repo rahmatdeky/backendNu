@@ -88,19 +88,6 @@ class UserController extends Controller
         ]);
     }
 
-    // public function addUser(Request $request)
-    // {
-    //     $addUser = Users::create([
-    //         'name' => $request->nama,
-    //         'email' => $request->email,
-    //         'password' => Hash::make($request->password)
-    //     ]);
-    //     return response()->json([
-    //         'status' => 'success',
-    //         'message' => 'data berhasi disimpan'
-    //     ]);
-    // }
-
     public function addUser(Request $request)
     {
         if ($request->hasFile('file')) {
