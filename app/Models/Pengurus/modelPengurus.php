@@ -22,5 +22,10 @@ class modelPengurus extends Model
     {
         return $this->belongsTo('App\Models\Referensi\ModelOrganisasi', 'kode_organisasi', 'kode_organisasi');
     }
+
+    public function koin()
+    {
+        return $this->hasMany('App\Models\Koin\ModelKoin', 'nik', 'nik');
+    }
 }
 

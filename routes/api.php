@@ -10,6 +10,7 @@ use App\Http\Controllers\pengurus\pengurusController;
 use App\Http\Controllers\lembaga\lembagaController;
 use App\Http\Controllers\LandingPage\LandingPageController;
 use App\Http\Controllers\referensi\ReferensiController;
+use App\Http\Controllers\koin\KoinController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +86,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('ref/organisasi/add', [ReferensiController::class, 'addOrganisasi']);
     Route::get('ref/organisasi/browse', [ReferensiController::class, 'browseOrganisasi']);
     Route::post('ref/organisasi/edit', [ReferensiController::class, 'editOrganisasi']);
+    Route::get('ref/warga', [pengurusController::class, 'getRefWarga']);
+
+    // KOIN
+    Route::post('koin/tambah', [KoinController::class, 'tambahKoin']);
+    Route::post('koin/browse', [KoinController::class, 'browseKoin']);
+    Route::post('koin/total', [KoinController::class, 'getTotal']);
 });
 Route::post('/registrasi', [AuthController::class, 'registrasi']);
 

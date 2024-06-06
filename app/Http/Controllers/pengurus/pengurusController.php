@@ -203,4 +203,11 @@ class pengurusController extends Controller
             'kecamatan' => $kecamatan
         ]);
     }
+
+    public function getRefWarga()
+    {
+        $warga = modelPengurus::select('nik', 'nama')->get();
+
+        return response()->json($warga);
+    }
 }
