@@ -5,6 +5,7 @@ namespace App\Http\Controllers\lembaga;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Lembaga\ModelLembaga;
+use Twilio\Rest\Client;
 
 class lembagaController extends Controller
 {
@@ -26,18 +27,38 @@ class lembagaController extends Controller
         ]);
 
         if ($tambah) {
-            return response()->json([
-                'title' => 'Berhasil',
-                'text' => 'Data Berhasil Disimpan',
-                'icon' => 'success'
-            ]);
-        } else {
-            return response()->json([
-                'title' => 'Gagal',
-                'text' => 'Data Gagal Disimpan',
-                'icon' => 'error'
-            ]);
-        }
+            $nomorHp = '+6282233277017';
+            $pesan = "Selamat, Anda telah berhasil didaftarkan sebagai pengurus.";
+
+                // Konfigurasi Twilio
+                $accountSid = 'AC4609bbfed87d203f80e658df855b26e7';
+                $authToken = '3a5b70fc3651da22c74b0b2e6208f9a5';
+                $twilioNumber = '+14794580564';
+
+                $client = new Client($accountSid, $authToken);
+
+                $message = $client->messages
+                    ->create("whatsapp:$nomorHp", // nomor HP pengurus
+                        array(
+                            'from' => "whatsapp:+14155238886",
+                            'body' => $pesan
+                        )
+                    );
+
+                if ($message) {
+                    return response()->json([
+                        'title' => 'Berhasil',
+                        'text' => 'Data Berhasil Disimpan dan Notifikasi WhatsApp telah dikirim',
+                        'icon' => 'success'
+                    ]);
+                } else {
+                    return response()->json([
+                        'title' => 'Gagal',
+                        'text' => 'Data Gagal Disimpan dan Notifikasi WhatsApp gagal dikirim',
+                        'icon' => 'error'
+                    ]);
+                }
+            }
     }
 
     public function browseLembaga(Request $request)

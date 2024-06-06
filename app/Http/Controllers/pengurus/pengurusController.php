@@ -84,58 +84,6 @@ class pengurusController extends Controller
                     'icon' => 'error'
                 ]);
             }
-        } else {
-            $tambah = modelPengurus::create([
-                'nik' => $request->nik,
-                'kode_kelurahan' => $request->kelurahan,
-                'nama' => $request->namaLengkap,
-                'email' => $request->email,
-                'jabatan' => $request->jabatan,
-                'no_hp' => $request->nomorHp,
-                'created_at' => now(),
-                'alamat' => $request->alamat,
-                'kode_organisasi' => $request->organisasi
-            ]);
-
-            if ($tambah) {
-                $nomorHp = $request->nomorHp;
-                $pesan = "Selamat, Anda telah berhasil didaftarkan sebagai pengurus.";
-
-                // Konfigurasi Twilio
-                $accountSid = 'your_account_sid';
-                $authToken = 'your_auth_token';
-                $twilioNumber = 'your_twilio_number';
-
-                $client = new Client($accountSid, $authToken);
-
-                $message = $client->messages
-                    ->create($nomorHp, // nomor HP pengurus
-                        array(
-                            'from' => $twilioNumber,
-                            'body' => $pesan
-                        )
-                    );
-
-                if ($message) {
-                    return response()->json([
-                        'title' => 'Berhasil',
-                        'text' => 'Data Berhasil Disimpan dan Notifikasi WhatsApp telah dikirim',
-                        'icon' => 'success'
-                    ]);
-                } else {
-                    return response()->json([
-                        'title' => 'Gagal',
-                        'text' => 'Data Gagal Disimpan dan Notifikasi WhatsApp gagal dikirim',
-                        'icon' => 'error'
-                    ]);
-                }
-            } else {
-                return response()->json([
-                    'title' => 'Gagal',
-                    'text' => 'Data Gagal Disimpan',
-                    'icon' => 'error'
-                ]);
-            }
         }
     }
 }
