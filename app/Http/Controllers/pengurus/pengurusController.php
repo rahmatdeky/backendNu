@@ -9,12 +9,16 @@ use App\Models\ModelKecamatan;
 use App\Models\ModelKelurahan;
 use App\Models\Users;
 use Hash;
+use Twilio\Rest\Client;
+use Illuminate\Support\Facades\Http;
 
 class pengurusController extends Controller
 {
     public function tambahPengurus(Request $request)
     {
         $getNIK = modelPengurus::where('nik', $request->nik)->first();
+
+        $nomorHp = '+62' . $request->nomorHp;
 
         if ($getNIK) {
             return response()->json([
@@ -37,13 +41,17 @@ class pengurusController extends Controller
                     'nama' => $request->namaLengkap,
                     'email' => $request->email,
                     'jabatan' => $request->jabatan,
-                    'no_hp' => $request->nomorHp,
+                    'no_hp' => $nomorHp,
                     'created_at' => now(),
                     'alamat' => $request->alamat,
                     'kode_organisasi' => $request->organisasi
                 ]);
     
                 if ($tambah && $addUser) {
+                    $message = 'Selamat' . $request->namaLengkap . ', Anda telah berhasil didaftarkan sebagai pengurus dengan email ' . $request->email . ' dan password' . $request->password . '.';
+
+                    $this->sendMessage($nomorHp, $message);
+                    
                     return response()->json([
                         'title' => 'Berhasil',
                         'text' => 'Data Berhasil Disimpan',
@@ -63,13 +71,17 @@ class pengurusController extends Controller
                     'nama' => $request->namaLengkap,
                     'email' => $request->email,
                     'jabatan' => $request->jabatan,
-                    'no_hp' => $request->nomorHp,
+                    'no_hp' => $nomorHp,
                     'created_at' => now(),
                     'alamat' => $request->alamat,
                     'kode_organisasi' => $request->organisasi
                 ]);
         
                 if ($tambah) {
+                    $message = "Selamat " . $request->namaLengkap . ", Anda telah berhasil didaftarkan sebagai warga.";
+
+                    $this->sendMessage($nomorHp, $message);
+
                     return response()->json([
                         'title' => 'Berhasil',
                         'text' => 'Data Berhasil Disimpan',
@@ -209,5 +221,18 @@ class pengurusController extends Controller
         $warga = modelPengurus::select('nik', 'nama')->get();
 
         return response()->json($warga);
+    }
+
+    private function sendMessage($nomorHp, $message)
+    {
+        $url = 'https://app.whacenter.com/api/send';
+        $nohp = $nomorHp;
+        $pesan = $message;
+
+        $response = Http::post($url, [
+            'device_id' => '8f3383a8912dfdae6abe715ff7aca792',
+            'number' => $nohp,
+            'message' => $pesan,
+        ]);
     }
 }
