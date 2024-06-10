@@ -5,8 +5,8 @@ namespace App\Http\Controllers\pengurus;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pengurus\modelPengurus;
-use App\Models\ModelKecamatan;
-use App\Models\ModelKelurahan;
+use App\Models\Referensi\ModelKecamatan;
+use App\Models\Referensi\ModelKelurahan;
 use App\Models\Users;
 use Hash;
 use Twilio\Rest\Client;
@@ -234,5 +234,29 @@ class pengurusController extends Controller
             'number' => $nohp,
             'message' => $pesan,
         ]);
+    }
+
+    public function getDashboardWarga()
+    {
+        $jumlahWargaPerKecamatan = ModelKecamatan::withCount(['kelurahan as warga_count' => function ($query) {
+            $query->join('warga', 'warga.kode_kelurahan', '=', 'kelurahan.kode_kelurahan');
+        }])->get();
+    
+        return response()->json($jumlahWargaPerKecamatan);
+    }
+
+    public function getTotalWarga(Request $request)
+    {
+        $type = $request->query('type', 'Warga'); // Default to 'Warga'
+        
+        if ($type === 'Warga') {
+            $data = modelPengurus::all();
+        } else if ($type === 'Pengurus') {
+            $data = modelPengurus::where('jabatan', '=', 'Pengurus')->get();
+        } else {
+            return response()->json(['error' => 'Invalid type'], 400);
+        }
+
+        return response()->json($data);
     }
 }

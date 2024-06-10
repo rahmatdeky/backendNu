@@ -97,6 +97,7 @@ class KoinController extends Controller
         }
 
         $totalPemasukan = $queryPemasukan->where('jenis', 'Pemasukan')->sum('nominal');
+        $totalPemasukan = floatval($totalPemasukan);
 
         // Query for total pengeluaran
         $queryPengeluaran = ModelKoin::query();
@@ -110,6 +111,7 @@ class KoinController extends Controller
         }
 
         $totalPengeluaran = $queryPengeluaran->where('jenis', 'Pengeluaran')->sum('nominal');
+        $totalPengeluaran = floatval($totalPengeluaran);
 
         $saldo = $totalPemasukan - $totalPengeluaran;
 

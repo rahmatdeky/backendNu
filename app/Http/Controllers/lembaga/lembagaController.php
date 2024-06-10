@@ -5,6 +5,8 @@ namespace App\Http\Controllers\lembaga;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Lembaga\ModelLembaga;
+use App\Models\Referensi\ModelKecamatan;
+use App\Models\Referensi\ModelKelurahan;
 
 class lembagaController extends Controller
 {
@@ -157,5 +159,14 @@ class lembagaController extends Controller
             // $bengkong,
             // $galang
         ]);
+    }
+    
+    public function getDashboardLembaga()
+    {
+        $jumlahLembagaPerKecamatan = ModelKecamatan::withCount(['kelurahan as lembaga_count' => function ($query) {
+            $query->join('lembaga', 'lembaga.kode_kelurahan', '=', 'kelurahan.kode_kelurahan');
+        }])->get();
+
+        return response()->json($jumlahLembagaPerKecamatan);
     }
 }

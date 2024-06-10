@@ -92,6 +92,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('koin/tambah', [KoinController::class, 'tambahKoin']);
     Route::post('koin/browse', [KoinController::class, 'browseKoin']);
     Route::post('koin/total', [KoinController::class, 'getTotal']);
+
+    // Dashboard
+    Route::get('dashboard/warga', [pengurusController::class, 'getDashboardWarga']);
+    Route::get('dashboard/lembaga', [lembagaController::class, 'getDashboardLembaga']);
+    Route::get('dashboard/warga/total', [pengurusController::class, 'getTotalWarga']);
 });
 Route::post('/registrasi', [AuthController::class, 'registrasi']);
 
