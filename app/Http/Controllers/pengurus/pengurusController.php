@@ -231,7 +231,7 @@ class pengurusController extends Controller
         $pesan = $message;
 
         $response = Http::post($url, [
-            'device_id' => '8f3383a8912dfdae6abe715ff7aca792',
+            'device_id' => '936e4689abc2cb0d005860882fd86775',
             'number' => $nohp,
             'message' => $pesan,
         ]);
