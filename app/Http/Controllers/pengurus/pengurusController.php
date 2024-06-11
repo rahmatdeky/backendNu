@@ -129,7 +129,8 @@ class pengurusController extends Controller
             'jabatan' => $request->jabatan,
             'no_hp' => $request->nomorHp,
             'email' => $request->email,
-            'kode_kelurahan' => $request->kelurahan
+            'kode_kelurahan' => $request->kelurahan,
+            'updated_at' => now()
         ]);
 
         if ($edit) {
