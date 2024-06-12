@@ -4,10 +4,10 @@ namespace App\Http\Controllers\referensi;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\referensi\kategori;
-use App\Models\referensi\ModelKecamatan;
-use App\Models\referensi\ModelKelurahan;
-use App\Models\referensi\ModelOrganisasi;
+use App\Models\Referensi\kategori;
+use App\Models\Referensi\ModelKecamatan;
+use App\Models\Referensi\ModelKelurahan;
+use App\Models\Referensi\ModelOrganisasi;
 
 class ReferensiController extends Controller
 {
