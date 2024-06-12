@@ -96,6 +96,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Dashboard
     Route::get('dashboard/warga', [pengurusController::class, 'getDashboardWarga']);
     Route::get('dashboard/lembaga', [lembagaController::class, 'getDashboardLembaga']);
+    Route::get('dashboard/lembaga/total', [lembagaController::class, 'getTotalLembaga']);
     Route::get('dashboard/warga/total', [pengurusController::class, 'getTotalWarga']);
 });
 Route::post('/registrasi', [AuthController::class, 'registrasi']);

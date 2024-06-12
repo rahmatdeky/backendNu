@@ -169,4 +169,10 @@ class lembagaController extends Controller
 
         return response()->json($jumlahLembagaPerKecamatan);
     }
+
+    public function getTotalLembaga()
+    {
+        $total = ModelLembaga::count();
+        return response()->json($total);
+    }
 }
