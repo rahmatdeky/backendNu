@@ -93,6 +93,7 @@ class BeritaController extends Controller
 
     public function editBerita(Request $request)
     {
+        $path = null;
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $fileName = $file->getClientOriginalName();
@@ -116,7 +117,7 @@ class BeritaController extends Controller
             'id_kategori' => $request->kategori
         ]);
 
-        if ($edit && $editFile) {
+        if ($edit) {
             return response()->json([
                 'title' => 'Berhasil',
                 'text' => 'Data Berhasil Dirubah',
@@ -125,7 +126,7 @@ class BeritaController extends Controller
         } else {
             return response()->json([
                 'title' => 'Gagal',
-                'text' => 'Data Gagal Dirubah',
+                'text' => 'Data Gagal Dirubah atau Tidak Ada Perubahan',
                 'icon' => 'error'
             ]);
         }
